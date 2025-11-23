@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import WhyChooseMe from './components/WhyChooseMe';
 import Experience from './components/Experience';
+import Process from './components/Process';
 import Services from './components/Services';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
+import Testimonials from './components/Testimonials';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -23,9 +26,12 @@ export default function App() {
         <main className="flex-grow">
           <Hero />
           <About />
+          <WhyChooseMe />
           <Experience />
+          <Process />
           <Services />
           <Skills />
+          <Testimonials />
           <Contact />
         </main>
         <Footer />

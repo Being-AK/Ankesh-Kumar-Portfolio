@@ -38,26 +38,26 @@ const Experience: React.FC = () => {
                             </div>
                         </div>
                         
-                        <ul className="space-y-4">
+                        <ul className="space-y-5">
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><ClipboardCheck size={20} /></div>
-                                <span><strong>Independent Audit Management:</strong> Managed 30+ Statutory & 15+ Tax Audits <em>from scratch</em>, handling entire audit workings, schedules, and drafting Financial Statements for final review.</span>
-                            </li>
-                            <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
-                                <div className="mt-1 text-gold shrink-0"><FileText size={20} /></div>
-                                <span><strong>High-Volume Compliance:</strong> Executed end-to-end GST & TDS compliance, successfully filing <strong>100+ GST Returns</strong> and managing reconciliation independently.</span>
+                                <span><strong>Orchestrated End-to-End Audits:</strong> Led 30+ Statutory & 15+ Tax Audits from planning to completion, including drafting Financial Statements for final partner review.</span>
                             </li>
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><Globe size={20} /></div>
-                                <span><strong>Transfer Pricing Expert:</strong> Handled compliance for IT companies (Turnover exceeding ₹300 Cr), including Form 3CEB filings, TP Study Report preparation, and benchmarking.</span>
+                                <span><strong>Directed Transfer Pricing Compliance:</strong> Managed Form 3CEB filings, Study Reports, and Benchmarking for IT clients with turnover exceeding <strong>₹300 Cr</strong>.</span>
+                            </li>
+                            <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
+                                <div className="mt-1 text-gold shrink-0"><FileText size={20} /></div>
+                                <span><strong>Executed High-Volume Compliance:</strong> Independently filed <strong>100+ GST Returns</strong>, validating raw data and ensuring zero major non-compliance queries.</span>
                             </li>
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><Landmark size={20} /></div>
-                                <span><strong>Corporate & Bank Audits:</strong> Conducted Bank Audits (Verification & Certification) and managed ROC Compliance (filing statutory forms/returns).</span>
+                                <span><strong>Bank & Corporate Assurance:</strong> Conducted Bank Branch Audits (Verification & Certification) and managed ROC statutory filings.</span>
                             </li>
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><Users size={20} /></div>
-                                <span><strong>Client Coordination:</strong> Led on-site audit visits, coordinating directly with client teams for data verification and ensuring smooth closure of audit queries.</span>
+                                <span><strong>Client Relationship Management:</strong> Lead on-site teams, coordinating directly with client CFOs/Management to resolve audit queries swiftly.</span>
                             </li>
                         </ul>
                     </div>
