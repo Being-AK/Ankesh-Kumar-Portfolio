@@ -1,10 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const About: React.FC = () => {
-  const ABOUT_IMAGE_URL = "https://i.postimg.cc/6pkmgM4z/Whats-App-Image-2025-11-10-at-14-15-50-1fa977df.jpg";
+  const ABOUT_IMAGE_URL = "https://i.postimg.cc/LXJD8Xrg/Portfolio.png";
+  
+  const [auditCount, setAuditCount] = useState(0);
+  const [turnoverCount, setTurnoverCount] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          animateValue(setAuditCount, 0, 30, 2000);
+          animateValue(setTurnoverCount, 0, 300, 2500);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+    };
+  }, []);
+
+  const animateValue = (setter: React.Dispatch<React.SetStateAction<number>>, start: number, end: number, duration: number) => {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      // Easing function for smooth effect
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      setter(Math.floor(easeOutQuart * (end - start) + start));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  };
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-darkBg transition-colors duration-300">
+    <section id="about" ref={sectionRef} className="py-20 bg-white dark:bg-darkBg transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           {/* Visual Placeholder */}
@@ -13,7 +55,7 @@ const About: React.FC = () => {
                 <img 
                     src={ABOUT_IMAGE_URL}
                     alt="Ankesh Kumar - Professional" 
-                    className="w-full h-full object-cover object-[48%_27%] scale-[1.08] opacity-90 group-hover:opacity-100 transition-opacity"
+                    className="w-full h-full object-cover object-[50%_34%] opacity-90 group-hover:opacity-100 transition-opacity"
                     onError={(e) => {
                         e.currentTarget.src = "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop";
                     }}
@@ -44,19 +86,19 @@ const About: React.FC = () => {
                 </p>
                 
                 <div className="pt-6 grid grid-cols-2 gap-6">
-                    <div className="bg-light dark:bg-slate-800 p-4 rounded-lg border-l-4 border-gold">
-                        <span className="block text-2xl font-bold text-navy dark:text-white">30+</span>
-                        <span className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase">Statutory Audits</span>
+                    <div className="bg-slate-50 dark:bg-darkCard p-5 rounded-lg border-l-4 border-gold shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
+                        <span className="block text-3xl font-bold text-navy dark:text-white tabular-nums mb-1">{auditCount}+</span>
+                        <span className="text-xs text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wide">Statutory Audits</span>
                     </div>
-                    <div className="bg-light dark:bg-slate-800 p-4 rounded-lg border-l-4 border-corporate">
-                        <span className="block text-2xl font-bold text-navy dark:text-white">₹300 Cr+</span>
-                        <span className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase">Client Turnover Handled</span>
+                    <div className="bg-slate-50 dark:bg-darkCard p-5 rounded-lg border-l-4 border-corporate shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
+                        <span className="block text-3xl font-bold text-navy dark:text-white tabular-nums mb-1">₹{turnoverCount} Cr+</span>
+                        <span className="text-xs text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wide">Client Turnover Handled</span>
                     </div>
                 </div>
             </div>
-          </div>
         </div>
       </div>
+    </div>
     </section>
   );
 };

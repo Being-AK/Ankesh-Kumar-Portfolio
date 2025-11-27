@@ -2,10 +2,10 @@ import React from 'react';
 import { ArrowRight, CalendarCheck } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  const PROFILE_IMAGE_URL = "https://i.postimg.cc/6pkmgM4z/Whats-App-Image-2025-11-10-at-14-15-50-1fa977df.jpg"; 
+  const PROFILE_IMAGE_URL = "https://i.postimg.cc/LXJD8Xrg/Portfolio.png"; 
 
   return (
-    <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-light dark:bg-darkBg transition-colors duration-300">
+    <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 to-white dark:bg-darkBg transition-colors duration-300">
       {/* Abstract Background Pattern - Premium Dark Mode Gradient */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-corporate/5 dark:bg-corporate/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
@@ -17,9 +17,9 @@ const Hero: React.FC = () => {
           
           {/* Text Content */}
           <div className="w-full md:w-3/5 order-2 md:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-yellow-100 dark:bg-blue-900/30 text-corporate dark:text-blue-200 text-xs font-bold uppercase tracking-wider mb-6 animate-fade-in border border-yellow-200 dark:border-blue-800">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-yellow-100 dark:bg-blue-900/30 text-navy dark:text-blue-200 text-xs font-bold uppercase tracking-wider mb-6 animate-fade-in border border-yellow-200 dark:border-blue-800">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              <span>Open to Work</span>
+              <span>Open for Full-time Roles</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-4 text-navy dark:text-white animate-fade-in-up tracking-tight">
@@ -30,16 +30,16 @@ const Hero: React.FC = () => {
               CA Finalist | Statutory Audit & Compliance Specialist
             </h2>
             
-            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed max-w-xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              From Drafting Financials to Finalizing Audits — Delivering <span className="font-bold text-navy dark:text-white">End-to-End Financial Clarity</span> for high-turnover entities.
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed max-w-xl animate-fade-in-up italic font-light" style={{ animationDelay: '0.2s' }}>
+              From Drafting Financials to Finalizing Audits — Delivering <span className="font-bold text-navy dark:text-white not-italic">End-to-End Financial Clarity</span> for high-turnover entities.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <a href="#contact" className="inline-flex justify-center items-center gap-2 bg-corporate hover:bg-navy dark:bg-white dark:text-navy dark:hover:bg-slate-200 text-white px-8 py-4 rounded font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                 Book a Consultation <CalendarCheck size={18} />
               </a>
-              <a href="#services" className="inline-flex justify-center items-center gap-2 bg-transparent border-2 border-gold text-gold hover:bg-gold hover:text-white px-8 py-4 rounded font-bold transition-all hover:shadow-md">
-                View Services <ArrowRight size={18} />
+              <a href="#contact" className="inline-flex justify-center items-center gap-2 bg-transparent border-2 border-gold text-gold hover:bg-gold hover:text-white dark:text-yellow-400 dark:border-yellow-400 dark:hover:bg-yellow-400 dark:hover:text-navy px-8 py-4 rounded font-bold transition-all hover:shadow-md">
+                Contact Me <ArrowRight size={18} />
               </a>
             </div>
           </div>
@@ -50,19 +50,14 @@ const Hero: React.FC = () => {
              <div className="absolute inset-0 bg-gradient-to-tr from-corporate/20 to-gold/20 rounded-2xl blur-2xl transform rotate-3 scale-105 -z-10"></div>
              
              {/* Image Frame - Rounded Rectangle 4:5 Ratio */}
-             <div className="relative w-64 md:w-80 aspect-[4/5] rounded-2xl overflow-hidden border-4 border-yellow-500/20 shadow-2xl shadow-blue-900/20 bg-white dark:bg-darkCard group">
+             <div className="relative w-64 md:w-80 aspect-[4/5] rounded-2xl overflow-hidden border-4 border-yellow-500/20 shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] dark:shadow-blue-900/20 bg-white dark:bg-darkCard group">
                 {/* Vignette Overlay (Inner Shadow) to fade edges */}
                 <div className="absolute inset-0 pointer-events-none z-10 shadow-[inset_0_0_80px_rgba(0,0,0,0.15)] dark:shadow-[inset_0_0_80px_rgba(0,0,0,0.5)] rounded-2xl"></div>
                 
-                {/* 
-                   Image Alignment Fix:
-                   - scale-[1.25]: Zooms in to crop out background elements (door).
-                   - object-[48%_0%]: Horizontally centered (balanced ears), Vertically aligned to Top (0%) to show hair.
-                */}
                 <img 
                     src={PROFILE_IMAGE_URL} 
                     alt="Ankesh Kumar" 
-                    className="w-full h-full object-cover object-[48%_21%] scale-[1.25] transition-transform duration-500 group-hover:scale-[1.3]"
+                    className="w-full h-full object-cover object-[50%_34%] transition-transform duration-500 group-hover:scale-105"
                     onError={(e) => {
                         e.currentTarget.src = "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop";
                     }}

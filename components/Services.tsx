@@ -37,7 +37,7 @@ const Services: React.FC = () => {
           {services.map((service, idx) => (
             <div 
                 key={idx} 
-                className="bg-white dark:bg-darkCard p-8 rounded-xl border border-slate-200 dark:border-slate-700 group flex flex-col items-start transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-yellow-500 dark:hover:border-gold"
+                className="bg-white dark:bg-darkCard p-8 rounded-xl border border-slate-200 dark:border-slate-700 group flex flex-col items-start transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-gold"
             >
                 <div className="w-14 h-14 bg-navy dark:bg-slate-700 text-white dark:text-gold rounded-lg flex items-center justify-center mb-6 group-hover:bg-corporate dark:group-hover:bg-gold dark:group-hover:text-white transition-colors shadow-md">
                     {service.icon}

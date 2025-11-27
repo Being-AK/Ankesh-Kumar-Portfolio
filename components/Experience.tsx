@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Briefcase, Calendar, ClipboardCheck, Globe, Landmark, Users, FileText } from 'lucide-react';
 
 const Experience: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section id="experience" className="py-20 bg-white dark:bg-darkBg border-y border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <section id="experience" ref={sectionRef} className="py-20 bg-white dark:bg-darkBg border-y border-slate-100 dark:border-slate-800 transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
             <div>
@@ -19,21 +42,24 @@ const Experience: React.FC = () => {
             <div className="relative pl-8 md:pl-12 border-l-2 border-slate-200 dark:border-slate-700 space-y-12">
                 
                 {/* Item 1 */}
-                <div className="relative group">
+                <div 
+                    className={`relative group transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                >
                     {/* Timeline Dot */}
                     <div className="absolute -left-[41px] md:-left-[57px] top-0 h-5 w-5 rounded-full border-4 border-white dark:border-darkBg bg-corporate dark:bg-gold shadow-md group-hover:scale-125 transition-transform"></div>
                     
                     <div className="bg-light dark:bg-darkCard p-8 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-corporate/30 dark:hover:border-gold/30 transition-all hover:shadow-lg">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
-                            <div>
+                            <div className="group/title cursor-default transition-transform duration-300 hover:translate-x-1">
                                 <h4 className="text-2xl font-bold text-navy dark:text-white">CA Article Assistant</h4>
                                 <div className="flex items-center gap-2 text-corporate dark:text-blue-400 font-semibold mt-1">
                                     <Briefcase size={16} />
                                     <span>GPHK & Associates</span>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 px-4 py-2 rounded border border-slate-100 dark:border-slate-700">
-                                <Calendar size={14} />
+                            {/* Updated Date Badge for Maximum Visibility (Solid Pill Style) */}
+                            <div className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white bg-slate-200 dark:bg-slate-700 px-4 py-2 rounded border border-slate-300 dark:border-slate-600 shadow-sm whitespace-nowrap">
+                                <Calendar size={14} className="text-corporate dark:text-gold" />
                                 <span>Dec 2024 – Present</span>
                             </div>
                         </div>
@@ -41,23 +67,23 @@ const Experience: React.FC = () => {
                         <ul className="space-y-5">
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><ClipboardCheck size={20} /></div>
-                                <span><strong>Orchestrated End-to-End Audits:</strong> Led 30+ Statutory & 15+ Tax Audits from planning to completion, including drafting Financial Statements for final partner review.</span>
+                                <span><strong className="text-navy dark:text-white">Orchestrated End-to-End Audits:</strong> Led 30+ Statutory & 15+ Tax Audits from planning to completion, including drafting Financial Statements for final partner review.</span>
                             </li>
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><Globe size={20} /></div>
-                                <span><strong>Directed Transfer Pricing Compliance:</strong> Managed Form 3CEB filings, Study Reports, and Benchmarking for IT clients with turnover exceeding <strong>₹300 Cr</strong>.</span>
+                                <span><strong className="text-navy dark:text-white">Directed Transfer Pricing Compliance:</strong> Managed Form 3CEB filings, Study Reports, and Benchmarking for IT clients with turnover exceeding <strong className="text-corporate dark:text-blue-300">₹300 Cr</strong>.</span>
                             </li>
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><FileText size={20} /></div>
-                                <span><strong>Executed High-Volume Compliance:</strong> Independently filed <strong>100+ GST Returns</strong>, validating raw data and ensuring zero major non-compliance queries.</span>
+                                <span><strong className="text-navy dark:text-white">Executed High-Volume Compliance:</strong> Independently filed <strong>100+ GST Returns</strong>, validating raw data and ensuring zero major non-compliance queries.</span>
                             </li>
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><Landmark size={20} /></div>
-                                <span><strong>Bank & Corporate Assurance:</strong> Conducted Bank Branch Audits (Verification & Certification) and managed ROC statutory filings.</span>
+                                <span><strong className="text-navy dark:text-white">Bank & Corporate Assurance:</strong> Conducted Bank Branch Audits (Verification & Certification) and managed ROC statutory filings.</span>
                             </li>
                             <li className="flex items-start gap-4 text-slate-700 dark:text-slate-300">
                                 <div className="mt-1 text-gold shrink-0"><Users size={20} /></div>
-                                <span><strong>Client Relationship Management:</strong> Lead on-site teams, coordinating directly with client CFOs/Management to resolve audit queries swiftly.</span>
+                                <span><strong className="text-navy dark:text-white">Client Relationship Management:</strong> Lead on-site teams, coordinating directly with client CFOs/Management to resolve audit queries swiftly.</span>
                             </li>
                         </ul>
                     </div>

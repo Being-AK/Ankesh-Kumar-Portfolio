@@ -2,7 +2,7 @@ import React from 'react';
 
 const Process: React.FC = () => {
   return (
-    <section className="py-20 bg-light dark:bg-darkCard transition-colors duration-300">
+    <section className="py-20 bg-light dark:bg-darkBg transition-colors duration-300">
       <div className="container mx-auto px-6">
         
         {/* Work Process Steps */}
@@ -19,12 +19,12 @@ const Process: React.FC = () => {
                     { step: "03", title: "Execution", desc: "Drafting financials & preparing compliance reports." },
                     { step: "04", title: "Delivery", desc: "Final review, query resolution & sign-off." }
                 ].map((item, idx) => (
-                    <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-lg border border-slate-200 dark:border-slate-700 relative overflow-hidden group h-full">
-                        {/* Fix: Moved number to Top-Right to avoid overlapping description text at the bottom. */}
-                        <span className="text-4xl font-bold text-slate-200 dark:text-slate-700 absolute top-4 right-4 group-hover:text-corporate/10 dark:group-hover:text-gold/10 transition-colors select-none pointer-events-none">{item.step}</span>
+                    <div key={idx} className="bg-white dark:bg-darkCard p-6 rounded-lg border border-slate-200 dark:border-slate-700 relative overflow-hidden group h-full shadow-sm hover:shadow-md transition-shadow">
+                        {/* Fix: Moved number to Top-Right to avoid overlapping description text at the bottom. Brightened for Dark Mode visibility. */}
+                        <span className="text-4xl font-bold text-slate-200 dark:text-slate-600 absolute top-4 right-4 group-hover:text-corporate/10 dark:group-hover:text-gold/10 transition-colors select-none pointer-events-none">{item.step}</span>
                         <div className="relative z-10">
                             <h4 className="font-bold text-navy dark:text-white text-xl mb-2">{item.title}</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400 pr-2">{item.desc}</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-300 pr-2 leading-relaxed">{item.desc}</p>
                         </div>
                     </div>
                 ))}
@@ -32,7 +32,7 @@ const Process: React.FC = () => {
         </div>
 
         {/* Mini Case Study */}
-        <div className="bg-navy dark:bg-slate-900 rounded-2xl p-8 md:p-12 relative overflow-hidden text-white shadow-2xl">
+        <div className="bg-navy dark:bg-slate-900 rounded-2xl p-8 md:p-12 relative overflow-hidden text-white shadow-2xl border border-navy dark:border-slate-700">
             <div className="absolute top-0 right-0 w-64 h-64 bg-corporate rounded-full blur-[80px] opacity-50"></div>
             
             <div className="relative z-10 flex flex-col md:flex-row gap-8 md:items-center">

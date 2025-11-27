@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { CheckCircle2, Zap, Lock, BarChart3 } from 'lucide-react';
 
 const WhyChooseMe: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) observer.disconnect();
+    };
+  }, []);
+
   const reasons = [
     {
       title: "Operational Ownership",
@@ -26,10 +49,10 @@ const WhyChooseMe: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-darkBg border-t border-slate-100 dark:border-slate-800">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-darkBg border-t border-slate-100 dark:border-slate-800 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-12">
-            <div className="w-full md:w-1/3">
+            <div className={`w-full md:w-1/3 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                 <h2 className="text-sm font-bold text-gold uppercase tracking-widest mb-2">Value Proposition</h2>
                 <h3 className="text-3xl font-extrabold text-navy dark:text-white mb-6">Why Partner With Me?</h3>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -38,7 +61,11 @@ const WhyChooseMe: React.FC = () => {
             </div>
             <div className="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {reasons.map((item, idx) => (
-                    <div key={idx} className="flex gap-4">
+                    <div 
+                        key={idx} 
+                        className={`flex gap-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                        style={{ transitionDelay: `${(idx * 150) + 300}ms` }}
+                    >
                         <div className="mt-1 shrink-0 bg-light dark:bg-slate-800 p-2 rounded-full h-fit">{item.icon}</div>
                         <div>
                             <h4 className="font-bold text-navy dark:text-white text-lg mb-2">{item.title}</h4>
