@@ -29,28 +29,28 @@ const WhyChooseMe: React.FC = () => {
     {
       title: "Operational Ownership",
       desc: "I don't just execute tasks; I own the outcome. From data collection to final reporting, I handle the full lifecycle independently.",
-      icon: <CheckCircle2 className="text-gold" size={24} />
+      icon: <CheckCircle2 className="text-gold group-hover:animate-wiggle" size={24} />
     },
     {
       title: "High-Volume Speed",
       desc: "Proven track record of filing 100+ returns and handling massive datasets without compromising accuracy.",
-      icon: <Zap className="text-gold" size={24} />
+      icon: <Zap className="text-gold group-hover:animate-wiggle" size={24} />
     },
     {
       title: "Regulatory Precision",
       desc: "Deep understanding of complex compliance frameworks (Transfer Pricing, ROC, GST) ensuring zero-penalty filings.",
-      icon: <Lock className="text-gold" size={24} />
+      icon: <Lock className="text-gold group-hover:animate-wiggle" size={24} />
     },
     {
       title: "Financial Clarity",
       desc: "I turn chaotic raw data into structured, audit-ready financial statements that give you clear visibility.",
-      icon: <BarChart3 className="text-gold" size={24} />
+      icon: <BarChart3 className="text-gold group-hover:animate-wiggle" size={24} />
     }
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 bg-white dark:bg-darkBg border-t border-slate-100 dark:border-slate-800 overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-darkBg border-t border-slate-100 dark:border-slate-800 overflow-hidden relative">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row gap-12">
             <div className={`w-full md:w-1/3 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                 <h2 className="text-sm font-bold text-gold uppercase tracking-widest mb-2">Value Proposition</h2>
@@ -63,10 +63,10 @@ const WhyChooseMe: React.FC = () => {
                 {reasons.map((item, idx) => (
                     <div 
                         key={idx} 
-                        className={`flex gap-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                        className={`flex gap-4 p-4 rounded-xl transition-all duration-700 group hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:shadow-sm ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                         style={{ transitionDelay: `${(idx * 150) + 300}ms` }}
                     >
-                        <div className="mt-1 shrink-0 bg-light dark:bg-slate-800 p-2 rounded-full h-fit">{item.icon}</div>
+                        <div className="mt-1 shrink-0 bg-light dark:bg-slate-800 p-2 rounded-full h-fit transition-transform group-hover:scale-110 shadow-sm border border-slate-100 dark:border-slate-700">{item.icon}</div>
                         <div>
                             <h4 className="font-bold text-navy dark:text-white text-lg mb-2">{item.title}</h4>
                             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{item.desc}</p>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { FloatingIcon, FinanceIcons, PiggyBankCreature } from './FinanceElements';
 
 const About: React.FC = () => {
   const ABOUT_IMAGE_URL = "https://i.postimg.cc/LXJD8Xrg/Portfolio.png";
@@ -35,7 +36,6 @@ const About: React.FC = () => {
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      // Easing function for smooth effect
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       setter(Math.floor(easeOutQuart * (end - start) + start));
       if (progress < 1) {
@@ -46,8 +46,12 @@ const About: React.FC = () => {
   };
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 bg-white dark:bg-darkBg transition-colors duration-300">
-      <div className="container mx-auto px-6">
+    <section id="about" ref={sectionRef} className="py-20 bg-white dark:bg-darkBg transition-colors duration-300 relative overflow-hidden">
+      {/* Decorative Floating Elements */}
+      <FloatingIcon icon={FinanceIcons.Coins} className="top-10 right-10" delay="1s" />
+      <FloatingIcon icon={FinanceIcons.Dollar} className="bottom-10 left-10" delay="2s" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           {/* Visual Placeholder */}
           <div className="w-full md:w-1/2 relative group">
@@ -67,7 +71,7 @@ const About: React.FC = () => {
                 </div>
              </div>
              {/* Decorative Elements */}
-             <div className="absolute -top-4 -left-4 w-full h-full border-2 border-gold/30 rounded-2xl -z-10"></div>
+             <div className="absolute -top-4 -left-4 w-full h-full border-2 border-gold/30 rounded-2xl -z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></div>
           </div>
 
           <div className="w-full md:w-1/2">
@@ -85,20 +89,34 @@ const About: React.FC = () => {
                     I have a reputation for taking ownership. Unlike typical assistance roles, I handle assignments <strong>end-to-end</strong>—from visiting client offices and gathering raw data to preparing final financial statements and compliance reports. My focus is on accuracy, regulatory adherence, and operational efficiency.
                 </p>
                 
-                <div className="pt-6 grid grid-cols-2 gap-6">
-                    <div className="bg-slate-50 dark:bg-darkCard p-5 rounded-lg border-l-4 border-gold shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
-                        <span className="block text-3xl font-bold text-navy dark:text-white tabular-nums mb-1">{auditCount}+</span>
+                <div className="pt-6 grid grid-cols-2 gap-6 relative">
+                    {/* Stat Card 1 */}
+                    <div className="bg-slate-50 dark:bg-darkCard p-5 rounded-lg border-l-4 border-gold shadow-sm border border-slate-100 dark:border-slate-700 transition-all relative group/card hover:-translate-y-1 hover:shadow-md">
+                        <span className="block text-3xl font-bold text-navy dark:text-white tabular-nums mb-1 group-hover/card:scale-105 transition-transform origin-left">{auditCount}+</span>
                         <span className="text-xs text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wide">Statutory Audits</span>
+                        {/* Orbiting Coin */}
+                        <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity animate-bounce-gentle">
+                            {FinanceIcons.Coins}
+                        </div>
                     </div>
-                    <div className="bg-slate-50 dark:bg-darkCard p-5 rounded-lg border-l-4 border-corporate shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
-                        <span className="block text-3xl font-bold text-navy dark:text-white tabular-nums mb-1">₹{turnoverCount} Cr+</span>
+                    {/* Stat Card 2 */}
+                    <div className="bg-slate-50 dark:bg-darkCard p-5 rounded-lg border-l-4 border-corporate shadow-sm border border-slate-100 dark:border-slate-700 transition-all relative group/card hover:-translate-y-1 hover:shadow-md">
+                        <span className="block text-3xl font-bold text-navy dark:text-white tabular-nums mb-1 group-hover/card:scale-105 transition-transform origin-left">₹{turnoverCount} Cr+</span>
                         <span className="text-xs text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wide">Client Turnover Handled</span>
+                         {/* Orbiting Graph */}
+                         <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity animate-bounce-gentle" style={{ animationDelay: '0.2s' }}>
+                            {FinanceIcons.Graph}
+                        </div>
+                    </div>
+                    
+                    {/* Playful Piggy Bank Creature */}
+                    <div className="absolute -bottom-10 right-0 hidden lg:block opacity-0 lg:opacity-100 transition-opacity delay-1000">
+                        <PiggyBankCreature />
                     </div>
                 </div>
             </div>
         </div>
       </div>
-    </div>
     </section>
   );
 };

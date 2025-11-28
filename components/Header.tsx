@@ -25,6 +25,9 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
     { name: 'Contact', href: '#contact' },
   ];
 
+  // Placeholder path - User should place 'sample_resume.pdf' in their public folder
+  const RESUME_PATH = "/sample_resume.pdf";
+
   return (
     <header 
       className={`fixed w-full top-0 z-50 transition-all duration-300 border-b ${
@@ -66,10 +69,13 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
           </button>
 
           <a 
-            href="#" 
-            className="flex items-center gap-2 bg-corporate hover:bg-navy dark:bg-white dark:text-navy dark:hover:bg-slate-200 text-white px-5 py-2.5 rounded text-sm font-semibold transition-colors"
+            href={RESUME_PATH}
+            download="sample_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 bg-corporate hover:bg-navy dark:bg-white dark:text-navy dark:hover:bg-slate-200 text-white px-5 py-2.5 rounded text-sm font-semibold transition-all duration-300 shadow-lg shadow-blue-900/20 hover:shadow-xl transform hover:-translate-y-0.5 active:scale-95"
           >
-            <Download size={16} />
+            <Download size={16} className="group-hover:translate-y-0.5 transition-transform duration-300" />
             <span>Resume</span>
           </a>
         </div>
@@ -93,7 +99,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-darkCard shadow-lg border-t border-gray-100 dark:border-slate-800">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-darkCard shadow-lg border-t border-gray-100 dark:border-slate-800 animate-fade-in-up">
           <nav className="flex flex-col p-4 space-y-2">
             {navLinks.map((link) => (
               <a
@@ -106,8 +112,11 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
               </a>
             ))}
              <a 
-                href="#" 
-                className="flex items-center justify-center gap-2 bg-corporate text-white px-4 py-3 rounded font-semibold mt-4"
+                href={RESUME_PATH}
+                download="sample_resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-corporate text-white px-4 py-3 rounded font-semibold mt-4 shadow-md active:scale-95 transition-transform"
             >
                 <Download size={16} />
                 <span>Download Resume</span>
