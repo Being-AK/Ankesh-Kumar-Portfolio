@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FloatingIcon, FinanceIcons, PiggyBankCreature } from './FinanceElements';
+import { Icon3D, Icons3D } from './Icons3D';
 
 const About: React.FC = () => {
   const ABOUT_IMAGE_URL = "https://i.postimg.cc/LXJD8Xrg/Portfolio.png";
@@ -47,9 +48,9 @@ const About: React.FC = () => {
 
   return (
     <section id="about" ref={sectionRef} className="py-20 bg-white dark:bg-darkBg transition-colors duration-300 relative overflow-hidden">
-      {/* Decorative Floating Elements */}
-      <FloatingIcon icon={FinanceIcons.Coins} className="top-10 right-10" delay="1s" />
-      <FloatingIcon icon={FinanceIcons.Dollar} className="bottom-10 left-10" delay="2s" />
+      {/* Decorative Floating Elements using 3D Icons */}
+      <FloatingIcon icon={<Icon3D icon={Icons3D.Coins} theme="gold" size="md" />} className="top-10 right-10" delay="1s" />
+      <FloatingIcon icon={<Icon3D icon={Icons3D.Dollar} theme="emerald" size="md" />} className="bottom-10 left-10" delay="2s" />
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row gap-12 items-center">
@@ -96,7 +97,7 @@ const About: React.FC = () => {
                         <span className="text-xs text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wide">Statutory Audits</span>
                         {/* Orbiting Coin */}
                         <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity animate-bounce-gentle">
-                            {FinanceIcons.Coins}
+                            <Icon3D icon={Icons3D.Coins} theme="gold" size="sm" />
                         </div>
                     </div>
                     {/* Stat Card 2 */}
@@ -105,7 +106,7 @@ const About: React.FC = () => {
                         <span className="text-xs text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wide">Client Turnover Handled</span>
                          {/* Orbiting Graph */}
                          <div className="absolute top-2 right-2 opacity-0 group-hover/card:opacity-100 transition-opacity animate-bounce-gentle" style={{ animationDelay: '0.2s' }}>
-                            {FinanceIcons.Graph}
+                            <Icon3D icon={Icons3D.Graph} theme="corporate" size="sm" />
                         </div>
                     </div>
                     
@@ -115,6 +116,7 @@ const About: React.FC = () => {
                     </div>
                 </div>
             </div>
+          </div>
         </div>
       </div>
     </section>
