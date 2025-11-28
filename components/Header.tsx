@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download, Sun, Moon } from 'lucide-react';
+import { Icon3D, Icons3D } from './Icons3D';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -25,8 +26,8 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
     { name: 'Contact', href: '#contact' },
   ];
 
-  // Placeholder path - User should place 'sample_resume.pdf' in their public folder
-  const RESUME_PATH = "/sample_resume.pdf";
+  // User must place 'Sample_Resume.pdf' in the public folder
+  const RESUME_PATH = "/Sample_Resume.pdf";
 
   return (
     <header 
@@ -38,7 +39,6 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <a href="#home" className="flex flex-col leading-tight group">
-            {/* Fix: Ensure 'Kumar' is visible in dark mode (dark:text-white) */}
             <span className="font-bold text-2xl text-corporate dark:text-white tracking-tight">
               Ankesh
               <span className="text-navy dark:text-gold ml-0.5">Kumar</span>
@@ -65,17 +65,15 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
             className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors"
             aria-label="Toggle Theme"
           >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            <Icon3D icon={darkMode ? Icons3D.Sun : Icons3D.Moon} theme={darkMode ? 'gold' : 'navy'} size="sm" />
           </button>
 
           <a 
             href={RESUME_PATH}
-            download="sample_resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Ankesh_Kumar_Resume.pdf"
             className="group flex items-center gap-2 bg-corporate hover:bg-navy dark:bg-white dark:text-navy dark:hover:bg-slate-200 text-white px-5 py-2.5 rounded text-sm font-semibold transition-all duration-300 shadow-lg shadow-blue-900/20 hover:shadow-xl transform hover:-translate-y-0.5 active:scale-95"
           >
-            <Download size={16} className="group-hover:translate-y-0.5 transition-transform duration-300" />
+            <Icon3D icon={Icons3D.Download} theme={darkMode ? 'navy' : 'gold'} size="sm" className="w-5 h-5 p-1" />
             <span>Resume</span>
           </a>
         </div>
@@ -84,9 +82,9 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
         <div className="flex items-center gap-4 md:hidden">
             <button 
                 onClick={toggleTheme} 
-                className="p-2 rounded-full text-navy dark:text-white"
+                className="p-1 rounded-full text-navy dark:text-white"
             >
-                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+                <Icon3D icon={darkMode ? Icons3D.Sun : Icons3D.Moon} theme={darkMode ? 'gold' : 'navy'} size="sm" />
             </button>
             <button 
             className="text-navy dark:text-white"
@@ -113,9 +111,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
             ))}
              <a 
                 href={RESUME_PATH}
-                download="sample_resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+                download="Ankesh_Kumar_Resume.pdf"
                 className="flex items-center justify-center gap-2 bg-corporate text-white px-4 py-3 rounded font-semibold mt-4 shadow-md active:scale-95 transition-transform"
             >
                 <Download size={16} />
